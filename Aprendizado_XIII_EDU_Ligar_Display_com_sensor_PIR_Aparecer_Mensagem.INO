@@ -34,6 +34,7 @@ void setup() {
 
 void loop() {
   
+if (digitalRead(pirPin) == HIGH) { 
   
    for (int i = 0; i<5; i++){
    
@@ -54,23 +55,34 @@ void loop() {
   delay(2000); // Wait for 2000 millisecond(s)
   lcd_1.clear();
        
- } 
+ } // fim da função while. 
+  
+}  // fim da função for. 
+  
+} // fim da função if. 
+  
+  else { 
      
- // Aguarda até o sensor "resetar" (ficar LOW novamente)
-    while (digitalRead(pirPin) == HIGH) {
-      delay(100); // Espera o sinal voltar a LOW
-    }     
-     
-     
-   }
-           
-//  mensagem do LCD inicialmente  
+// Verificar o valor do sensor PIR para ver se não detectou movimento   
+ 
+  val = digitalRead (pirPin); // ler o sensor PIR. 
+  
+   while (val == LOW) {
+   
+   
+ // mensagem no LCD para o botão pressionado;
+ 
   lcd_1.setCursor(0, 0);
   lcd_1.print("Sem");
   delay(2000); // Wait for 2000 millisecond(s)
   lcd_1.setCursor(0, 1);
-  lcd_1.print("movimento...");
+     lcd_1.print("movimento... :)");
   delay(2000); // Wait for 2000 millisecond(s)
   lcd_1.clear();
-   
+       
+ } // fim da função while.      
+     
+  }  // fim da função else. 
+               
+
 }
