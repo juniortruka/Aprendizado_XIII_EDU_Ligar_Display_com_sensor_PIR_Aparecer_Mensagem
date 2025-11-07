@@ -1,5 +1,3 @@
-// Código versão beta, pois, falta inserir uma linha de código para resetar o sensor para quando estiver LOW; 
-
 // Projeto de dispositivo de detecção de movimento; 
 
 // Display do LCD ;
@@ -30,44 +28,17 @@ void setup() {
   lcd_1.display();
  
  
-}
+} // fim da função setup.
 
 void loop() {
   
-if (digitalRead(pirPin) == HIGH) { 
-  
-   for (int i = 0; i<5; i++){
-   
-// Verificar o valor do sensor PIR para ver se detectou movimento   
- 
-  val = digitalRead (pirPin); // ler o sensor PIR. 
-  
-   while (val == HIGH) {
-   
-   
- // mensagem no LCD para o botão pressionado;
- 
-  lcd_1.setCursor(0, 0);
-  lcd_1.print("Movimento");
-  delay(2000); // Wait for 2000 millisecond(s)
-  lcd_1.setCursor(0, 1);
-  lcd_1.print("detectado!!!");
-  delay(2000); // Wait for 2000 millisecond(s)
-  lcd_1.clear();
-       
- } // fim da função while. 
-  
-}  // fim da função for. 
-  
-} // fim da função if. 
-  
-  else { 
+if (digitalRead(pirPin) == LOW) { 
      
 // Verificar o valor do sensor PIR para ver se não detectou movimento   
  
   val = digitalRead (pirPin); // ler o sensor PIR. 
   
-   while (val == LOW) {
+   while (digitalRead(pirPin) == LOW) {
    
    
  // mensagem no LCD para o botão pressionado;
@@ -82,7 +53,35 @@ if (digitalRead(pirPin) == HIGH) {
        
  } // fim da função while.      
      
-  }  // fim da função else. 
-               
+  }  // fim da função if.   
+  
 
-}
+  // Segunda função para detectar:   
+  
+  
+  else {
+  
+  // Verificar o valor do sensor PIR para ver se não detectou movimento   
+ 
+  val = digitalRead (pirPin); // ler o sensor PIR. 
+  
+   while (digitalRead(pirPin) == HIGH) {
+   
+   
+ // mensagem no LCD para o botão pressionado;
+ 
+  lcd_1.setCursor(0, 0);
+  lcd_1.print("Movimento");
+  delay(2000); // Wait for 2000 millisecond(s)
+  lcd_1.setCursor(0, 1);
+     lcd_1.print("detectado!!!");
+  delay(2000); // Wait for 2000 millisecond(s)
+  lcd_1.clear();
+       
+ } // fim da função while
+  
+} // fim da função else 
+                 
+
+  
+}  // fim da função loop.
